@@ -15,7 +15,7 @@
 
     $query = "Select name from customer where username='$username';";
     $result = pg_query($connection,$sql);
-    $name = $result->fetch_assoc();
+    $name = pg_fetch_assoc($result);
 
     $closeConnection = pg_close($connection);
     
