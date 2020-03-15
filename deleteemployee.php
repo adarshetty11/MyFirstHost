@@ -52,28 +52,24 @@
 
     if (!empty($empid))
     {
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $databasename = "myfirstdb";
-
-            $connection = mysqli_connect( $servername,$username,$password,$databasename);
+            $connection = mysqli_connect( "host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
+);
 
             if(!$connection)
             {
-                die("Connection failed: ".mysqli_connect_error());
+                die("Connection failed: ".pg_last_error());
             }
 
-            $sql="select * from Employee where EmployeeId='".$empid."'";
-            $primary = mysqli_query($connection,$sql);
-            $rows = mysqli_num_rows($primary);
+            $sql="select * from employee where employeeId='".$empid."'";
+            $primary = pg_query($connection,$sql);
+            $rows = pg_num_rows($primary);
             if($rows == 0){
                 echo "<script>alert('There is no such ID!!!');</script>";
                 die();
             }
 
-            $deleteRecordQuery = "delete from Employee where Employeeid='$empid'";
-            if($connection->query($deleteRecordQuery))
+            $deleteRecordQuery = "delete from employee where employeeid='$empid'";
+            if(pg_query($connection,$deleteRecordQuery))
             {
                 echo "<script>alert('Record deleted successfully');</script>";
             }
@@ -82,7 +78,7 @@
                 echo "<script>alert('There is no Employee Id to delete');</script>";
             }
 
-            $closeConnection = mysqli_close($connection);
+            $closeConnection = pg_close($connection);
     }
     else
     {
