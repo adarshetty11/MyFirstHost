@@ -1,27 +1,23 @@
 <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "myfirstdb";
-
-    $connection = mysqli_connect( $servername,$username,$password,$databasename);
+    $connection = mysqli_connect("host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
+);
 
     if(!$connection)
     {
-        die("Connection failed: ".mysqli_connect_error());
+        die("Connection failed: ".pg_last_error());
     }
 
     $empid = filter_input(INPUT_POST,'empid');
 
-    $query = "select * from Employee where EmployeeId='$empid'";
-    $primary = mysqli_query($connection,$query);
-    $rows = mysqli_num_rows($primary);
+    $query = "select * from employee where employeeId='$empid'";
+    $primary = pg_query($connection,$query);
+    $rows = pg_num_rows($primary);
     if($rows == 0){
         echo "<script>alert('There is no such ID!!!');</script>";
         die();
     }
-    $result = $connection -> query($query);
+    $result = pg_query($connection,$query);
 ?>
 <html>
 <head>
@@ -67,18 +63,18 @@
             </tr>
     
     <?php
-    while($rows = $result -> fetch_assoc())
+    while($rows = pg_fetch_assoc($result))
     {
     ?>
     <form method="Post" action="update1.php">
     <tr>
-        <td><input type="number" value="<?php echo $rows['EmployeeId'] ?>" name="empid"></td>
-        <td><input type="text" value="<?php echo $rows['Name'] ?>" name="nam"></td>
-        <td><input type="text" value="<?php echo $rows['DepartmentNo'] ?>" name="dep"></td>
-        <td><input type="text" value="<?php echo $rows['Gender'] ?>" name="gen"></td>
-        <td><input type="text" value="<?php echo $rows['DOB'] ?>" name="dob"></td>
-        <td><input type="text" value="<?php echo $rows['Address'] ?>" name="add"></td>
-        <td><input type="number" value="<?php echo $rows['Salary'] ?>" name="sal"></td>  
+        <td><input type="number" value="<?php echo $rows['employeeid'] ?>" name="empid"></td>
+        <td><input type="text" value="<?php echo $rows['name'] ?>" name="nam"></td>
+        <td><input type="text" value="<?php echo $rows['departmentno'] ?>" name="dep"></td>
+        <td><input type="text" value="<?php echo $rows['gender'] ?>" name="gen"></td>
+        <td><input type="text" value="<?php echo $rows['dob'] ?>" name="dob"></td>
+        <td><input type="text" value="<?php echo $rows['address'] ?>" name="add"></td>
+        <td><input type="number" value="<?php echo $rows['salary'] ?>" name="sal"></td>  
     </tr>
         <input id="update" type="submit" name="submit" value="update">
     </form>
