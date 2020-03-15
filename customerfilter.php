@@ -20,7 +20,7 @@
     $query1 = "select name from customer where username = '$username';";
     $result1 = pg_query($connection,$query1);
     $data = pg_fetch_assoc($result1);
-    $name = $data['Name'];
+    $name = $data['name'];
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +68,7 @@
             </tr>
 
     <?php
-    while($rows = pg_fetch_assoc($filter))
+    while($rows = pg_fetch_assoc($result))
     {
     ?>
 
