@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="utf-8">
+            <title>Customer form</title>
+            <link rel="stylesheet" type="text/css" href="css/cust.css">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div id="logo">
+                    <img src="css/images/logo.jpg">
+                </div>
+                <nav>
+                    <ul>
+                            <li><a href="homepage.html">Home</a></li>
+                            <li><a href="servicepage.html">About</a></li>
+                            <li><a href="contactpage.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section id="details">
+            <div class="container">
+                <form method="POST" action="customerform.php">
+                    <h2 id="heading">Enter Your details</h2>
+                    <div>
+                        <label>Username</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label>Name</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <br>
+                     <div>
+                        <label>Gender</label>
+                        <select name="gender" style="width: 173px">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                   <br>
+                   <div>
+                        <label>Age</label>
+                        <input type="number" name="age" value="20" required>
+                    </div>
+                    
+                   <br>
+        
+                   <div>
+                        <label>Door No.</label>
+                        <input type="text" name="doorno" required>
+                   </div>
+                   <br>
+                   <div>
+                        <label>Street</label>
+                        <input type="text" name="street" required>
+                   </div>
+                   <br>
+                   <div>
+                        <label>City</label>
+                        <input type="text" name="city" required>
+                   </div>
+                   <br>
+                   <div>
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+                   <br>
+                   <div>
+                        <label>Mobile No.</label>
+                        <input type="text" name="mobile" required>
+                    </div>
+                    <br>
+                         <button name="submit">Register</button>   
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            AA Sports Company,Copyright &copy;2019
+        </footer>
+    </body>
+</html>
