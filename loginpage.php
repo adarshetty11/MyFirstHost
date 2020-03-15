@@ -42,16 +42,16 @@
 
 <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "myfirstdb";
+    $servername = "ec2-3-91-112-166.compute-1.amazonaws.com";
+    $username = "wncysqgsdbushb";
+    $password = "b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d";
+    $databasename = "dfao2a1rbfvq49";
 
-    $connection = mysqli_connect( $servername,$username,$password,$databasename);
+    $connection = pg_connect( $servername,$username,$password,$databasename);
 
     if(!$connection)
     {
-        die("Connection failed: ".mysqli_connect_error());
+        die("Connection failed: ".pg_last_error());
     }
     session_start();
 
@@ -63,8 +63,8 @@
 
             $sql = "select * from login where username='".$username."' and password='".$password."'";
 
-            $result = mysqli_query($connection,$sql);
-            if(mysqli_num_rows($result) == 1)
+            $result = pg_query($connection,$sql);
+            if(pg_num_rows($result) == 1)
             {
                 header("location:addemployee.php");
             }
@@ -73,5 +73,5 @@
                 echo "<a style='position:absolute;bottom:11em;left:35em;color:red;'>Incorrect Username and Password</a>";
             }
     }
-    $closeConnection = mysqli_close($connection);
+    $closeConnection = pg_close($connection);
 ?>
