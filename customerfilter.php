@@ -73,7 +73,7 @@
     ?>
 
     <tr align="center">
-        <td><?php echo $rows['departmentName'] ?></td>
+        <td><?php echo $rows['departmentname'] ?></td>
         <td><?php echo $rows['kit'] ?></td>
         <td><?php echo $rows['brand'] ?></td>
         <td><?php echo $rows['size'] ?></td>
