@@ -57,16 +57,12 @@
 
 <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "myfirstdb";
-
-    $connection = mysqli_connect( $servername,$username,$password,$databasename);
+    $connection = pg_connect( "host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
+);
 
     if(!$connection)
     {
-        die("Connection failed: ".mysqli_connect_error());
+        die("Connection failed: ".pg_last_error());
     }
 
     session_start();
@@ -75,9 +71,9 @@
     
     if(isset($password))
     {
-        $sql = "SELECT * from Customer where Username='$username' and Mobile='$password';";
-        $result = mysqli_query($connection,$sql);
-        $rows = mysqli_num_rows($result);
+        $sql = "SELECT * from customer where username='$username' and mobile='$password';";
+        $result = pg_query($connection,$sql);
+        $rows = pg_num_rows($result);
         if($rows == 0)
         {
             echo "<a style='position:absolute;bottom:13em;left:38em;color:red;'>Incorrect Username and Password</a>";
@@ -87,5 +83,5 @@
             header("location:sportsdep.php");
         }
     }
-    $closeConnection = mysqli_close($connection);
+    $closeConnection = pg_close($connection);
 ?>
