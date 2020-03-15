@@ -1,0 +1,167 @@
+body{
+	margin:0;
+	padding:0;
+	background-color: rgb(31, 29, 29);
+	color: white;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+	font-family:sans-serif; 
+}
+#logo img{
+    width: 100px;
+}
+
+.container{
+    width:80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header{
+    background: #35424a;
+    color:white;
+    padding-top: 30px;
+    min-height:70px;
+    border-bottom: white 3px solid;
+}
+
+header a{
+    color:white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header ul{
+    margin: 0;
+    padding: 0;
+}
+
+header li{
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+header  #logo{
+    float: left;
+    margin-top: 0;
+}
+
+header nav{
+    float: right;
+    margin-top: 10px;
+}
+
+header #logo img{
+    margin: 0;
+}
+
+header a:hover{
+    color:red;
+}
+#signin{
+	min-height: 473px;
+}
+.login{
+	width:320px;
+	height:420px;
+	background:rgba(0,0,0,0.5);
+	color: white;
+	top: 54%;
+	left: 50%;
+	position: absolute;
+	transform:translate(-50%,-50%);
+	box-sizing: border-box;
+	border-radius: 5%;
+	padding: 70px 30px;
+}
+
+h1{
+	margin: 0;
+	padding:0 0 20px;
+	text-align: center;
+	font-size: 22px;
+
+}
+.login p{
+	margin :0;
+	padding: 0;
+	font-weight:bold;
+
+}
+.login input,button{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.login input[type="text"], input[type="password"]{
+   border:none;
+   border-bottom: 1px solid white;
+   background:transparent;
+   outline: none;
+   height:40px;
+   color: white;
+   font-size: 16px;
+
+}
+
+.login button{
+    border:none;
+    outline:none;
+	height:40px;
+	width: 100%;
+    background: #1c8adb;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+
+}
+
+.login button:hover{
+  cursor: pointer;
+  background:red;
+  color: black;
+}
+
+footer{
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    background: #2e383f;
+    border-top: white 3px solid;
+}
+@media(max-width: 760px){
+    header #logo,
+    header nav,
+    header nav li{
+        text-align: center;
+        float: none;
+        width: 100%;
+    }
+    header{
+        padding: 20px;
+    }
+    #details{
+        text-align:center;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

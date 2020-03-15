@@ -1,0 +1,125 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color: lightgray;
+   
+}
+
+header nav{
+    float: right;
+    margin-top: 10px;
+}
+
+header a{
+    color:white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    display: block;
+}
+header li{
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header{
+    background: black;
+    color:white;
+    padding-top: 30px;
+    min-height:80px;
+    border-bottom: white 3px solid;
+}
+
+header ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header ul li{
+    float: left;
+    width: 269.5px;
+    height: 40px;
+    background-color: black;
+    line-height: 40px;
+    text-align: center;
+}
+
+header ul li a{
+    text-decoration: none;
+    color: white;
+    display: block;
+
+}
+
+header ul li a:hover{
+    background-color: darkblue;
+}
+
+header .active a{
+    color:yellow;
+}
+
+header ul li ul li{
+    display: none;
+}
+
+header ul li:hover ul li{
+    display: block;
+}
+
+/*section*/
+
+#details{
+    min-height: 500px;
+}
+
+#details input,select{
+    margin-left: 45em;
+}
+#details label{
+    position: absolute;
+    margin-left: 33em;
+}
+#heading{
+    margin-left: 23.5em;
+    line-height: 3;
+}
+
+#details input[type=submit]{
+    width: 8em;
+    height: 2em;
+    background: black;
+    color: white;
+    border: blueviolet;
+    border-radius: 5px;
+}
+
+footer{
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    background: black;
+    border-top: white 3px solid;
+}
+
+@media(max-width: 760px){
+    header #logo,
+    header nav,
+    header nav li{
+        text-align: center;
+        float: none;
+        width: 100%;
+    }
+    header{
+        padding: 20px;
+    }
+    #details{
+        text-align:center;
+    }
+
+}
