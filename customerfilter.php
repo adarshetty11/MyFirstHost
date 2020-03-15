@@ -43,7 +43,7 @@
                         <ul>
                             <li><a href="employeedetails.php">View All Employees</a></li>
                             <li><a href="customerdetails.php">View All Customers</a></li>
-                            <li class="active"><a href="departmentfilter.php">View All Customers</a></li>
+                            <li class="active"><a href="departmentfilter.php">View All Departments</a></li>
                             <li><a href="filter.php">Filter Customers</a></li>
                         </ul>
                         </li>
