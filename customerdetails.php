@@ -1,19 +1,16 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "myfirstdb";
 
-    $connection = mysqli_connect( $servername,$username,$password,$databasename);
+    $connection = pg_connect("host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
+);
 
     if(!$connection)
     {
-        die("Connection failed: ".mysqli_connect_error());
+        die("Connection failed: ".pg_last_error());
     }
 
 
-    $query = "select * from Customer";
-    $result = $connection -> query($query);
+    $query = "select * from customer";
+    $result = pg_query($connection,$query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,19 +60,19 @@
             </tr>
     
     <?php
-    while($rows = $result -> fetch_assoc())
+    while($rows = pg_fetch_assoc($result))
     {
     ?>
     <tr align="center">
-        <td><?php echo $rows['Name'] ?></td>
-        <td><?php echo $rows['Gender'] ?></td>
-        <td><?php echo $rows['Age'] ?></td>
-        <td><?php echo $rows['DoorNo'] ?></td>
-        <td><?php echo $rows['Street'] ?></td>
-        <td><?php echo $rows['City'] ?></td>
-        <td><?php echo $rows['Email'] ?></td>
-        <td><?php echo $rows['Mobile'] ?></td>
-        <td><a href="customerfilter.php?check=<?php echo $rows['Username'] ?>">Check</a></td>
+        <td><?php echo $rows['name'] ?></td>
+        <td><?php echo $rows['gender'] ?></td>
+        <td><?php echo $rows['age'] ?></td>
+        <td><?php echo $rows['doorno'] ?></td>
+        <td><?php echo $rows['street'] ?></td>
+        <td><?php echo $rows['city'] ?></td>
+        <td><?php echo $rows['email'] ?></td>
+        <td><?php echo $rows['mobile'] ?></td>
+        <td><a href="customerfilter.php?check=<?php echo $rows['username'] ?>">Check</a></td>
     </tr>
     <?php
     }
