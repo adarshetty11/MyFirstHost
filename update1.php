@@ -46,16 +46,13 @@
 </html>
 
 <?php
-     $servername = "localhost";
-     $username = "root";
-     $password = "";
-     $databasename = "myfirstdb";
  
-     $connection = mysqli_connect( $servername,$username,$password,$databasename);
+     $connection = pg_connect( "host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
+);
  
      if(!$connection)
      {
-         die("Connection failed: ".mysqli_connect_error());
+         die("Connection failed: ".pg_last_error());
      }
     
     $empid = filter_input(INPUT_POST,'empid');
@@ -66,8 +63,8 @@
     $address = filter_input(INPUT_POST,'add');
     $salary = filter_input(INPUT_POST,'sal');
     
-    $update = "update Employee set Name='$name',DepartmentNo='$department',Gender='$gender',DOB='$dob',Address='$address',Salary='$salary' where EmployeeId='$empid'";;
-    $res = mysqli_query($connection,$update);
+    $update = "update employee set name='$name',departmentno='$department',gender='$gender',dob='$dob',address='$address',salary='$salary' where employeeid='$empid'";;
+    $res = pg_query($connection,$update);
     if($res)
     {
         echo "<script>alert('Record updated successfully');</script>";
