@@ -1,26 +1,23 @@
 <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "myfirstdb";
 
-    $connection = mysqli_connect( $servername,$username,$password,$databasename);
+    $connection = pg_connect("host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
+);
 
     if(!$connection)
     {
-        die("Connection failed: ".mysqli_connect_error());
+        die("Connection failed: ".pg_last_error());
     }
     
     session_start();
     $departmentno = $_GET['check'];
-    $query = "SELECT EmployeeId,Name,Gender,DOB,Address,Salary from Employee where DepartmentNo='$departmentno';";
-    $result = mysqli_query($connection,$query);
+    $query = "SELECT employeeid,name,gender,dob,address,salary from employee where departmentNo='$departmentno';";
+    $result = pg_query($connection,$query);
 
-    $query1 = "select DepartmentName from Department where DepartmentNo = '$departmentno';";
-    $result1 = mysqli_query($connection,$query1);
-    $data = mysqli_fetch_assoc($result1);
-    $name = $data['DepartmentName'];
+    $query1 = "select departmentname from department where departmentno = '$departmentno';";
+    $result1 = pg_query($connection,$query1);
+    $data = pg_fetch_assoc($result1);
+    $name = $data['departmentname'];
 ?>
 
 <!DOCTYPE html>
@@ -69,17 +66,17 @@
             </tr>
 
     <?php
-    while($rows = $result -> fetch_assoc())
+    while($rows = pg_fetch_assoc($result))
     {
     ?>
 
     <tr align="center">
-    <td><?php echo $rows['EmployeeId'] ?></td>
-        <td><?php echo $rows['Name'] ?></td>
-        <td><?php echo $rows['Gender'] ?></td>
-        <td><?php echo $rows['DOB'] ?></td>
-        <td><?php echo $rows['Address'] ?></td>
-        <td><?php echo $rows['Salary'] ?></td>
+    <td><?php echo $rows['employeeid'] ?></td>
+        <td><?php echo $rows['name'] ?></td>
+        <td><?php echo $rows['gender'] ?></td>
+        <td><?php echo $rows['dob'] ?></td>
+        <td><?php echo $rows['address'] ?></td>
+        <td><?php echo $rows['salary'] ?></td>
     </td>
     </tr>
 
