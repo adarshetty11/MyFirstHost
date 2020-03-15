@@ -114,7 +114,7 @@
             {
                 $insertRecordQuery = "INSERT into employee (employeeid, name, departmentno ,gender, dob, address, salary) values 
                 ('$empid', '$name', '$department','$gender', '$dob', '$address', '$salary');";
-                $result = mysqli_query($connection,$insertRecordQuery);
+                $result = pg_query($connection,$insertRecordQuery);
                 if($result)
                 {
                     echo "<script>alert('New Record inserted successfully');</script>";
