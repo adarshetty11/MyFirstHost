@@ -1,14 +1,11 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "myfirstdb";
-
-    $connection = mysqli_connect( $servername,$username,$password,$databasename);
+    
+    $connection = pg_connect( "host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
+);
 
     if(!$connection)
     {
-         die("Connection failed: ".mysqli_connect_error());
+         die("Connection failed: ".pg_last_error());
     }
 ?>
 
@@ -70,15 +67,15 @@
 
     $departmentno = filter_input(INPUT_POST,'department');
     
-    $query = "select c.Name, c.Age, k.Kit, k.Brand, k.Size from Customer c,Kits k 
-    where c.Username=k.Username and k.DepartmentNo='$departmentno';";
-    $result = mysqli_query($connection,$query);
+    $query = "select c.name, c.age, k.kit, k.brand, k.size from customer c,kits k 
+    where c.username=k.username and k.departmentno='$departmentno';";
+    $result = pg_query($connection,$query);
 
-    $query1 = "select DepartmentName from Department where DepartmentNo = '$departmentno';";
-    $result1 = mysqli_query($connection,$query1);
+    $query1 = "select departmentname from department where departmentno = '$departmentno';";
+    $result1 = pg_query($connection,$query1);
 
-    $data = mysqli_fetch_assoc($result1);
-    $name = $data['DepartmentName'];
+    $data = pg_fetch_assoc($result1);
+    $name = $data['departmentname'];
 
 
 ?>
@@ -95,16 +92,16 @@
             </tr>
 
     <?php
-    while($rows = $result -> fetch_assoc())
+    while($rows = pg_fetch_assoc($result))
     {
     ?>
 
     <tr align="center">
-        <td><?php echo $rows['Name'] ?></td>
-        <td><?php echo $rows['Age'] ?></td>
-        <td><?php echo $rows['Kit'] ?></td>
-        <td><?php echo $rows['Brand'] ?></td>
-        <td><?php echo $rows['Size'] ?></td>
+        <td><?php echo $rows['name'] ?></td>
+        <td><?php echo $rows['age'] ?></td>
+        <td><?php echo $rows['kit'] ?></td>
+        <td><?php echo $rows['brand'] ?></td>
+        <td><?php echo $rows['size'] ?></td>
     </tr>
 
     <?php
