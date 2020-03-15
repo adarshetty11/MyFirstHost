@@ -1,15 +1,11 @@
 <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "myfirstdb";
-
-    $connection = mysqli_connect( $servername,$username,$password,$databasename);
+    $connection = pg_connect("host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
+);
 
     if(!$connection)
     {
-        die("Connection failed: ".mysqli_connect_error());
+        die("Connection failed: ".pg_last_error());
     }
 
     session_start();
@@ -17,9 +13,9 @@
     $username=$_SESSION['user'];
     $department=$_SESSION['dep'];
 
-    $query = "Select Name from Customer where Username='$username';";
-    $result = $connection -> query($query);
-    $name = $result->fetch_assoc();
+    $query = "Select name from customer where username='$username';";
+    $result = pg_query($connection,$query);
+    $name = pg_fetch_assoc($result);
 
 
     $kit = filter_input(INPUT_POST,'kit');
@@ -30,13 +26,13 @@
 
        
 
-        $insertRecordQuery = "INSERT into Kits (Username, DepartmentNo, Kit, Brand, Size, Price) 
+        $insertRecordQuery = "INSERT into kits (username, departmentno, kit, brand, size, price) 
         values ('$username', '$department','$kit', '$brand', '$size', '$price');";
-        $result2 = mysqli_query($connection,$insertRecordQuery);
+        $result2 = pg_query($connection,$insertRecordQuery);
 
         if($result2){
-            $query = "INSERT into Buys(Username,DepartmentNo) values ('$username','$department');";
-            $result1 = mysqli_query($connection,$query);
+            $query = "INSERT into buys(username,departmentno) values ('$username','$department');";
+            $result1 = pg_query($connection,$query);
             echo "<script>alert('Kit purchased sucessfully')</script>";
             ?>
 <!DOCTYPE html>
@@ -57,14 +53,14 @@
                 <img src="css/images/icon1.png">
                     <ul style="margin-top:-33px;margin-left:22px;">
                            
-                            <li style="text-transform:uppercase;"><?php echo $name['Name']; ?></li>
+                            <li style="text-transform:uppercase;"><?php echo $name['name']; ?></li>
                             <li><a href="customerlogin.php">Sign Out</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
         <section>
-            <p style="text-align:center;font-size:20px;">Thank You <?php echo $name['Name']; ?> for purchasing Kit from our company.The kit will be shipped to your address within 2 days.</p>
+            <p style="text-align:center;font-size:20px;">Thank You <?php echo $name['name']; ?> for purchasing Kit from our company.The kit will be shipped to your address within 2 days.</p>
             <br>
             <p style="text-align:center;font-size:20px;">Want to purchase kit again?<br> Click here <a href="sportsdep.php">Purchase again</a></p>
         </section>
@@ -74,7 +70,7 @@
 
         }
         else{
-            echo "<script>alert('Some problem in purchasing.Please retry..!!')</script>";
+            echo "<script>alert('Some problem in server.Please retry..!!')</script>";
             ?>
             <!DOCTYPE html>
             <html>
@@ -94,7 +90,7 @@
                             <img src="css/images/icon1.png">
                                 <ul style="margin-top:-33px;margin-left:22px;">
                                        
-                                        <li style="text-transform:uppercase;"><?php echo $name['Name']; ?></li>
+                                        <li style="text-transform:uppercase;"><?php echo $name['name']; ?></li>
                                         <li><a href="history.php">Purchase History </a></li>
                                         <li><a href="customerlogin.php">Sign Out</a></li>
                                 </ul>
@@ -102,7 +98,7 @@
                         </div>
                     </header>
                     <section>
-                        <p style="text-align:center;font-size:20px;color:red;">Sorry <?php echo $name['Name']; ?> some error occured while purchasing kit.
+                        <p style="text-align:center;font-size:20px;color:red;">Sorry <?php echo $name['name']; ?> some error occured while purchasing kit.
                         Please make sure you have generated price.</p>
                         <p style="text-align:center;font-size:20px;">Want to purchase kit again?<br> Click here <a href="sportsdep.php">Purchase again</a></p>
                         <br>
@@ -116,7 +112,7 @@
 
      
 
-    $closeConnection = mysqli_close($connection);
+    $closeConnection = pg_close($connection);
 
     
 ?>
