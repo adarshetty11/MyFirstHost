@@ -1,19 +1,16 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "myfirstdb";
 
-    $connection = mysqli_connect( $servername,$username,$password,$databasename);
+    $connection = pg_connect( "host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
+);
 
     if(!$connection)
     {
-        die("Connection failed: ".mysqli_connect_error());
+        die("Connection failed: ".pg_last_error());
     }
 
 
-    $query = "select * from Employee";
-    $result = $connection -> query($query);
+    $query = "select * from employee";
+    $result = pg_query($connection,$query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,17 +58,17 @@
             </tr>
     
     <?php
-    while($rows = $result -> fetch_assoc())
+    while($rows = pg_fetch_assoc($result))
     {
     ?>
     <tr align="center">
-        <td><?php echo $rows['EmployeeId'] ?></td>
-        <td><?php echo $rows['Name'] ?></td>
-        <td><?php echo $rows['DepartmentNo'] ?></td>
-        <td><?php echo $rows['Gender'] ?></td>
-        <td><?php echo $rows['DOB'] ?></td>
-        <td><?php echo $rows['Address'] ?></td>
-        <td><?php echo $rows['Salary'] ?></td>
+        <td><?php echo $rows['employeeid'] ?></td>
+        <td><?php echo $rows['name'] ?></td>
+        <td><?php echo $rows['departmentno'] ?></td>
+        <td><?php echo $rows['gender'] ?></td>
+        <td><?php echo $rows['dob'] ?></td>
+        <td><?php echo $rows['address'] ?></td>
+        <td><?php echo $rows['salary'] ?></td>
     </tr>
     <?php
     }
