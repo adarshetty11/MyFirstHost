@@ -1,25 +1,21 @@
 <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $databasename = "myfirstdb";
-
-    $connection = mysqli_connect( $servername,$username,$password,$databasename);
+    $connection = pg_connect("host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
+);
 
     if(!$connection)
     {
-        die("Connection failed: ".mysqli_connect_error());
+        die("Connection failed: ".pg_last_error());
     }
 
     session_start();
     $username=$_SESSION['user'];
 
-    $query = "Select Name from Customer where Username='$username';";
-    $result = $connection -> query($query);
-    $name = $result->fetch_assoc();
+    $query = "Select name from customer where username='$username';";
+    $result = pg_query($connection,$query);
+    $name = pg_fetch_assoc($result);
 
-    $closeConnection = mysqli_close($connection);
+    $closeConnection = pg_close($connection);
     
 ?>
 
@@ -40,7 +36,7 @@
                 <nav>
                 <img src="css/images/icon1.png">
                     <ul style="margin-top:-34px;margin-left:22px;"> 
-                            <li style="text-transform:uppercase;"><?php echo $name['Name']; ?></li>
+                            <li style="text-transform:uppercase;"><?php echo $name['name']; ?></li>
                             <li><a href="customerlogin.php">Sign Out</a></li>
                     </ul>
                 </nav>
