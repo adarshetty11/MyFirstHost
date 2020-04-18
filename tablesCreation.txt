@@ -1,0 +1,51 @@
+heroku pg:psql postgresql-rugged-46604 --app shettyadarsh
+
+create table customer(
+username varchar(50) primary key,
+name varchar(50) not null,
+gender varchar(20) not null,
+age int not null,
+doorno varchar(50) not null,
+street varchar(50) not null,
+city varchar(50) not null,
+email varchar(50) not null,
+mobile varchar(50) not null
+);
+
+create table department(
+departmentno varchar(20) primary key,
+departmentname varchar(20) not null
+);
+
+create table employee(
+employeeid int primary key,
+name varchar(50) not null,
+departmentno varchar(20) references department(departmentno) on delete cascade on update cascade,
+gender varchar(50) not null,
+dob varchar(50) not null,
+address varchar(50) not null,
+salary int not null
+);
+
+create table buys(
+username varchar(50) references customer(username) on delete cascade on update cascade,
+departmentno varchar(20) references department(departmentno) on delete cascade on update cascade,
+primary key(username,departmentno)
+);
+
+create table kits(
+username varchar(50) references customer(username) on delete cascade on update cascade,
+departmentno varchar(20) references department(departmentno) on delete cascade on update cascade,
+kitno serial primary key,
+kit varchar(50) not null,
+brand varchar(50) not null,
+size varchar(50) not null,
+price float
+);
+
+create table login(
+username varchar(20) not null,
+password varchar(20) not null
+);
+
+"host=ec2-3-91-112-166.compute-1.amazonaws.com port=5432 dbname=dfao2a1rbfvq49 user=wncysqgsdbushb password=b8188545ffab5ba8643606c50da6cb46c5a5db1ab48dea7dd187e6f66158b70d"
