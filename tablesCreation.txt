@@ -1,4 +1,7 @@
-heroku pg:psql postgresql-rugged-46604 --app shettyadarsh
+cli:heroku pg:psql postgresql-rugged-46604 --app shettyadarsh
+website:https://shettyadarsh.herokuapp.com/homepage.html
+
+
 
 create table customer(
 username varchar(50) primary key,
