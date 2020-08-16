@@ -81,7 +81,6 @@ header a:hover{
     float: left;
     margin-right: 20px;
     margin-left: 20px;
-    transform: rotate(90deg);
     border: solid white 1px; padding: 2px;
 }
 
